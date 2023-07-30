@@ -1,0 +1,100 @@
+import {View,Text,Button,TouchableOpacity,StyleSheet,ScrollView} from "react-native"
+
+const HomeScreen = ({navigation}) => {
+
+  const handleGotoProfile = () => {
+    navigation.navigate("Menu") // syntak link to other page
+  }
+
+  const product = [1,2,3,4,5,6,4,5,6,7,8]
+  const banner = ["red","pink","#333","blue"]
+
+  return (
+    <View>
+      <ScrollView
+        horizontal={true}      
+      >
+        {banner.map((item,index)=>{
+          return (
+            <View key={index} style={styles.rowBanner}>
+              <View style={[styles.view1,{backgroundColor:item}]}>
+                <View style={styles.box1}></View>
+              </View>
+            </View>
+          )
+        })}
+       
+      </ScrollView>
+
+      <ScrollView>
+        {product.map((item,index)=>{
+          return (
+            <TouchableOpacity
+              onPress={()=>alert(item)}
+            >
+              <View key={index} style={styles.view2}>
+                <View style={{flexDirection:'row'}}>
+                  <View style={styles.grido}>
+                    <Text>Image</Text>
+                  </View>
+                  <View style={styles.grid1}>
+                    <Text>{index+1}.P.name</Text>
+                    <Text>P.brand | P.style</Text>
+                    <Text>Po.date</Text>
+                  </View>
+                </View>
+                <View style={styles.grid2}>
+                  <Text>P.price</Text>
+                  <Text>P.status</Text>
+                </View>
+              </View> 
+            </TouchableOpacity>  
+          )
+        })}
+      </ScrollView>
+      
+    </View>
+  )
+}
+
+
+const styles = StyleSheet.create({
+  rowBanner:{
+    flexDirection:"row"
+  },
+  view1:{
+    flex:1,
+    width:300,
+    margin:1,
+    height : 200,
+    alignItems:'center',
+    justifyContent : "center"
+  },
+  box1:{
+    width:100,
+    height:100,
+    backgroundColor:'#449'
+  },
+  view2:{
+    flexDirection:'row',
+    backgroundColor:'pink',
+    padding:10,
+    justifyContent:'space-between',
+    borderBottomWidth : 1,
+    borderBottomColor : "#eee"
+  },
+  grido:{
+    backgroundColor:"#888",
+    padding:10
+  },
+  grid1 : {
+    // backgroundColor:'blue',
+    paddingLeft:10
+  },
+  grid2 : {
+    // backgroundColor:'red',
+  }
+
+})
+
+export default HomeScreen
