@@ -22,8 +22,6 @@ const MenuScreen = ({ navigation }) => {
   const [description,setDescriptoin] = useState("")
   const [parentId,setParentId] = useState("")
 
-
-
   useEffect(() => {
     getList()
   }, [])
@@ -132,7 +130,7 @@ const MenuScreen = ({ navigation }) => {
               </View>
               <View style={{flexDirection:'row',alignItems:'flex-end'}}>
                 <Button  
-                  iconLeft={<AntDesign color={"#FFF"} size={18} name="user" />} 
+                  iconLeft={<AntDesign color={"#FFF"} size={18} name="delete" />} 
                   size="sm"  
                   type="danger" 
                   onPress={()=>handleRemove(item)}

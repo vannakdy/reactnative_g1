@@ -14,8 +14,13 @@ import ChangePasswordScreen from './src/screen/ChangePasswordScreen';
 import AddressScreen from './src/screen/AddressScreen';
 import VoucherScreen from './src/screen/VoucherScreen';
 import WishlistScreen from './src/screen/WishlistScreen';
+import {useSelector} from "react-redux"
+import ProductDetailScreen from './src/screen/ProductDetailScreen';
+
+
 
 const App = () => {
+  const {is_login} = useSelector(state=>state.profile)
   const Stack = createStackNavigator()
   const Tab = createBottomTabNavigator()
   const option = {}
@@ -40,6 +45,15 @@ const App = () => {
       <Stack.Screen name="Vocher" component={VoucherScreen} />
     </Stack.Navigator>
   )
+
+  const HomeScreenStack = () => (
+    <Stack.Navigator>
+      <Stack.Screen name='Home' component={HomeScreen} />
+      <Stack.Screen name='ProductDetail' component={ProductDetailScreen} />
+      <Stack.Screen name="Login"  component={LoginScreen} />
+    </Stack.Navigator>
+  )
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -66,30 +80,54 @@ const App = () => {
       >
         <Tab.Screen 
           name='Home'
-          component={HomeScreen}
+          options={{
+            headerShown:false
+          }}
+          component={HomeScreenStack} //{HomeScreen}
         />
         <Tab.Screen 
           name='Menu'
           component={MenuScreen}
         />
         <Tab.Screen 
-          name='Wishlist'
-          component={WishlistScreen}
-        />
-        <Tab.Screen 
           name='Search'
           component={SearchScreen}
+        />
+        <Tab.Screen 
+          name='Wishlist'
+          component={WishlistScreen}
+          listeners={({ navigation, route }) => ({
+            
+            tabPress: (e) => {
+              if(!is_login){
+                // Prevent default action
+                e.preventDefault();
+                // Do something with the `navigation` object
+                navigation.navigate('Login');
+              }
+            },
+          })}
         />
         <Tab.Screen 
           name='Profile'
           options={{
             headerShown:false
           }}
-          // component={ProfileScreen}
           component={ProfileStack}
+          listeners={({ navigation, route }) => ({
+            tabPress: (e) => {
+              if(!is_login){
+                // Prevent default action
+                e.preventDefault();
+                // Do something with the `navigation` object
+                navigation.navigate('Login');
+              }
+            },
+          })}
         />
 
       </Tab.Navigator>
+
       {/* <Stack.Navigator >
         <Stack.Screen
           name='Home' component={HomeScreen} 

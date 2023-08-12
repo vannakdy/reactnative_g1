@@ -2,21 +2,25 @@ import React, { useState } from "react"
 import {
     View,
     Text,
-    TouchableOpacity,
     StyleSheet,
-    ScrollView
 } from "react-native"
 import Button from "../component/button/Button"
 import InputText from "../component/input/InputText"
-const LoginScreen = ({ navigation }) => {
+import { request } from "../util/request"
+import {useDispatch} from "react-redux"
+import { setProfile } from "../redux/profileSlice"
+import Layout from "../component/layout/Layout"
 
+const LoginScreen = ({ navigation }) => {
+    
+    const dispatch = useDispatch()
     const [username, setUsername] = useState("")
     const [errUsername, setErrUsername] = useState(null)
     const [password, setPassword] = useState("")
     const [errPassword, setErrPassword] = useState(null)
     const [errLogin, setErrLogin] = useState(null)
+    const [loading,setLoading] = useState(false)
 
-    const usernameTmp = "admin", passwordTmp = "2361"
     const handleLogin = () => {
         setErrPassword(null)
         setErrUsername(null)
@@ -31,42 +35,58 @@ const LoginScreen = ({ navigation }) => {
             setErrPassword("Please fill in password!")
         }
         if (!isError) { // !isError || isError == false
-            if (username != usernameTmp || password != passwordTmp) {
-                setErrLogin("Username or password incorrect!");
-            } else {
-                alert(username + ", " + password) // past data to server
+            var param = {
+                "username" : username, //"nora@gmail.com",
+                "password"  : password //"123456"
             }
-
+            setLoading(true)
+            request("customer/login","post",param).then(res=>{
+                setLoading(false)
+                if(res){
+                   if(res.error) {
+                    setErrLogin(res.message)
+                   }else{
+                    // login success store session
+                    // react redux toolkit
+                    dispatch(setProfile(res))
+                    navigation.navigate("Home")
+                    // link
+                   }
+                }
+            })
         }
-
     }
+
     return (
-        <View style={styles.loginContainer}>
-            <View>
-                <Text style={styles.textLogin}>Login </Text>
-                <InputText
-                    msEorror={errUsername}
-                    label={"Username"}
-                    placeholder={"Username"}
-                    onChangeText={(text) => {
-                        setUsername(text)
-                    }}
-                />
-                <InputText
-                    msEorror={errPassword}
-                    label={"Password"}
-                    placeholder={"Password"}
-                    onChangeText={(text) => {
-                        setPassword(text)
-                    }}
-                />
-                <Text style={{ color: 'red' }}>{errLogin}</Text>
-                <Button
-                    onPress={handleLogin}
-                    title={"Login"}
-                />
+        <Layout loading={loading}>
+            <View style={styles.loginContainer}>
+                <View>
+                    <Text style={styles.textLogin}>Login </Text>
+                    <InputText
+                        msEorror={errUsername}
+                        label={"Username"}
+                        placeholder={"Username"}
+                        onChangeText={(text) => {
+                            setUsername(text)
+                        }}
+                    />
+                    <InputText
+                        secureTextEntry={true}
+                        msEorror={errPassword}
+                        label={"Password"}
+                        placeholder={"Password"}
+                        onChangeText={(text) => {
+                            setPassword(text)
+                        }}
+                    />
+                    <Text style={{ color: 'red',marginBottom:5 }}>{errLogin}</Text>
+                    <Button
+                        onPress={handleLogin}
+                        title={"Login"}
+                    />
+                </View>
             </View>
-        </View>
+        </Layout>
     )
 }
 
@@ -74,9 +94,9 @@ const LoginScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     loginContainer:{
         flex:1,
-        paddingHorizontal:20,
+        paddingHorizontal:10,
         justifyContent:'center',
-        marginTop:-40
+        marginTop:-100
     },
     textLogin: {
         fontSize:32,

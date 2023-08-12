@@ -1,9 +1,11 @@
 
+import React, {useEffect} from "react"
 import {View,StyleSheet,TouchableOpacity} from "react-native"
 import Layout from "../component/layout/Layout"
 import Text from "../component/text/MainText"
 import Entypo from "react-native-vector-icons/Entypo"
-
+import {useDispatch,useSelector} from "react-redux"
+import { logOut } from "../redux/profileSlice"
 const data_profile = [
   {
     title:"Edit Profile",
@@ -25,22 +27,49 @@ const data_profile = [
 const data_setting = [
   {
     title:"Language",
+    route:"Language"
   },
   {
     title:"Theme",
+    route:"Theme"
+  },
+  {
+    title:"Logout",
+    route:"Logout"
   }
 ]
 
 const ProfileScreen = ({navigation}) => {
+   const dispatch = useDispatch()
+   const {profile} = useSelector(state=>state.profile)
+  // useEffect(() => {
+  //   navigation.navigate("Login")
+  // }, [navigation]);
 
   const onPressProfile = (item) => {
     navigation.navigate(item.route)
   }
   const onPressSetting = (item) => {
-    
+    if(item.route == "Logout"){
+      dispatch(logOut())
+      navigation.navigate("Home")
+    }
   }
   return (
-    <Layout>
+    <Layout
+      loading={false}
+    >
+      <View 
+        style={{
+          height:160,
+          alignItems:'center',
+          justifyContent:"center"
+        }}
+      >
+        <View style={{height:80,width:80,backgroundColor:'#FFF',borderRadius:100}} />
+        <Text type="title" title={profile?.tel} />
+        <Text  title={profile?.email} />
+      </View>
       <Text type="title" title="Profile" />
       {data_profile.map((item,index)=>{
         return (

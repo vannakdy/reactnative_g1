@@ -22,11 +22,13 @@ export const dataHomeSlide = [
 ]
 export const dataHotItems = [
     {
+        id:1,
         title: "Mid sale",
         sub_title: "Up to 70%",
         image: image_gl1,
     },
     {
+        id:2,
         title: "Macbook",
         sub_title: "Description Macbook",
         image: image_gl2,

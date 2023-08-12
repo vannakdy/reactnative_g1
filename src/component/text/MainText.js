@@ -7,7 +7,8 @@ function MainText({
     pl=0,
     pr=0,
     pt=0,
-    pb=0
+    pb=0,
+    numberOfLines=1
 }) {
     var sty = {}
     switch(type){
@@ -24,7 +25,7 @@ function MainText({
     }
     return (
         <View>
-            <Text style={sty}>{title}</Text>
+            <Text numberOfLines={numberOfLines} style={sty}>{title}</Text>
         </View>
     )
 }

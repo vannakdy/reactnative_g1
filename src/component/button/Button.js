@@ -16,7 +16,7 @@ const Button = ({
     var style = {}
     switch(size){
         case "sm": style.height = 30; break;
-        case "md": style.height = 36; break;
+        case "md": style.height = 45; break;
         case "lg": style.height = 50; break;
     }
     switch(type){

@@ -13,7 +13,8 @@ const InputText = ({ // function component
     pt=0,
     pb=0,
     multiline=false,
-    value
+    value,
+    secureTextEntry=false
 }) => {
     const borderColor = (msEorror != null ? "red" : "#666")
     return (
@@ -21,6 +22,7 @@ const InputText = ({ // function component
             <Text style={styles.textLabel}>{label} {require && "*"}</Text>
             <View style={[styles.inputContainer,{ borderColor:borderColor,height:multiline ? 60 : 45}]} >
                 <TextInput
+                    secureTextEntry={secureTextEntry}
                     value={value} 
                     multiline={multiline}
                     numberOfLines={2}
