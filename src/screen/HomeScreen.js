@@ -20,11 +20,11 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     // Use `setOptions` to update the button that we previously specified
     // Now the button includes an `onPress` handler to update the count
-    navigation.setOptions({
-      headerRight: () => (
-        <Button onPress={() => alert(11)} title="Update count" />
-      ),
-    });
+    // navigation.setOptions({
+    //   headerRight: () => (
+    //     <Button onPress={() => alert(11)} title="Update count" />
+    //   ),
+    // });
   }, [navigation]);
 
   const getHome = () => {
@@ -38,11 +38,11 @@ const HomeScreen = ({navigation}) => {
   return (
     <Layout>
       <HomeSlide 
-        data={dataHomeSlide}
+        data={home.hotItems}
       />
       <HomeHotItem
         navigation={navigation}
-        title={"Hot Items "+is_login} 
+        title={"Hot Items"} 
         data={home.hotItems}
       />
       <HomeHotItem 

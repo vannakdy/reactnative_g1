@@ -16,6 +16,7 @@ import VoucherScreen from './src/screen/VoucherScreen';
 import WishlistScreen from './src/screen/WishlistScreen';
 import {useSelector} from "react-redux"
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
+import ProductListScreen from './src/screen/ProductListScreen';
 
 
 
@@ -50,7 +51,9 @@ const App = () => {
     <Stack.Navigator>
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='ProductDetail' component={ProductDetailScreen} />
+      <Stack.Screen name='ProductList' component={ProductListScreen} />
       <Stack.Screen name="Login"  component={LoginScreen} />
+      
     </Stack.Navigator>
   )
 
@@ -74,7 +77,7 @@ const App = () => {
               return <Ionicons name={"heart-outline"} size={22} color={color} />;
             }
           },
-          tabBarActiveTintColor: 'green', //tomato
+          tabBarActiveTintColor: '#0D6EFD', //tomato
           tabBarInactiveTintColor: 'gray',
         })}
       >

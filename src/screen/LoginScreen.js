@@ -12,7 +12,7 @@ import { setProfile } from "../redux/profileSlice"
 import Layout from "../component/layout/Layout"
 
 const LoginScreen = ({ navigation }) => {
-    
+
     const dispatch = useDispatch()
     const [username, setUsername] = useState("")
     const [errUsername, setErrUsername] = useState(null)
@@ -49,7 +49,7 @@ const LoginScreen = ({ navigation }) => {
                     // login success store session
                     // react redux toolkit
                     dispatch(setProfile(res))
-                    navigation.navigate("Home")
+                    navigation.navigate("Profile")
                     // link
                    }
                 }

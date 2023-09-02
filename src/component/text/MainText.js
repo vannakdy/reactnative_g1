@@ -8,7 +8,8 @@ function MainText({
     pr=0,
     pt=0,
     pb=0,
-    numberOfLines=1
+    numberOfLines=1,
+    style={}
 }) {
     var sty = {}
     switch(type){
@@ -22,6 +23,7 @@ function MainText({
         paddingRight:pr,
         paddingTop:pt,
         paddingBottom:pb,
+        ...style
     }
     return (
         <View>

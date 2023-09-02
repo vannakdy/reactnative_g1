@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     },
     textLabel:{
         fontSize:16,
-        color:'#000'
+        color:'#000',
+        marginBottom:5
     },
     textError:{
         color:'red'
