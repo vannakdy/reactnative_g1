@@ -36,7 +36,11 @@ const HomeScreen = ({navigation}) => {
   }
   
   return (
-    <Layout>
+    <Layout
+      title="KH PC"
+      isBack={false}
+      isCartIcon={true}
+    >
       <HomeSlide 
         data={home.hotItems}
       />

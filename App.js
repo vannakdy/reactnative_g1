@@ -17,6 +17,8 @@ import WishlistScreen from './src/screen/WishlistScreen';
 import {useSelector} from "react-redux"
 import ProductDetailScreen from './src/screen/ProductDetailScreen';
 import ProductListScreen from './src/screen/ProductListScreen';
+import CartScreen from './src/screen/CartScreen';
+import OrderScreen from './src/screen/OrderScreen';
 
 
 
@@ -52,6 +54,8 @@ const App = () => {
       <Stack.Screen name='Home' component={HomeScreen} />
       <Stack.Screen name='ProductDetail' component={ProductDetailScreen} />
       <Stack.Screen name='ProductList' component={ProductListScreen} />
+      <Stack.Screen name='Cart' component={CartScreen} />
+      <Stack.Screen name='Order' component={ OrderScreen} />
       <Stack.Screen name="Login"  component={LoginScreen} />
       
     </Stack.Navigator>

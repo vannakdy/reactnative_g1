@@ -33,7 +33,10 @@ const ProductListScreen = ({
     }
 
     return (
-       <Layout>
+       <Layout
+            title="List"
+            isCartIcon={true}
+       >
             {product?.map((item,index)=>{
                 return(
                     <TouchableOpacity onPress={()=>onPressItem(item)} key={index} style={styles.constianer}>

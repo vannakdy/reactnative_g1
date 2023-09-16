@@ -9,11 +9,17 @@ import {
 import Button from "../component/button/Button"
 import InputText from "../component/input/InputText"
 import Entypo  from "react-native-vector-icons/Entypo"
+import Layout from "../component/layout/Layout"
 const WishlistScreen = ({navigation}) => {
   return (
-    <View>
+    <Layout
+      title="Wishlist"
+      isBack={false}
+    >
+      <View>
 
-    </View>
+      </View>
+    </Layout>
   )
 }
 

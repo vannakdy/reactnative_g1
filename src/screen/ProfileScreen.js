@@ -57,6 +57,8 @@ const ProfileScreen = ({navigation}) => {
   }
   return (
     <Layout
+      title="Profile"
+      isBack={false}
       loading={false}
     >
       <View 

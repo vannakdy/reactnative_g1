@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { View, Text, Image, StyleSheet } from "react-native"
+import { View, Text, Image, StyleSheet,TouchableOpacity } from "react-native"
 import { request } from "../util/request"
 import MainText from "../component/text/MainText"
 import AntDesign from "react-native-vector-icons/AntDesign"
@@ -7,9 +7,11 @@ import Button from "../component/button/Button"
 import Layout from "../component/layout/Layout"
 import {useSelector,useDispatch} from "react-redux"
 import { getUserId, getUserProfile } from "../util/service"
+import Header from "../component/header/Header"
 
 const ProductDetailScreen = ({
-    route
+    route,
+    navigation
 }) => {
     const userId = getUserId();
     const [product, setProduct] = useState({})
@@ -18,6 +20,7 @@ const ProductDetailScreen = ({
     useEffect(() => {
         getProductDetails()
     }, [])
+
 
     const getProductDetails = () => {
         // route.params.id // get parameter from pre page
@@ -29,6 +32,8 @@ const ProductDetailScreen = ({
     }
 
     const addToCart = () => {
+        navigation.navigate("Cart")
+        return
         var param = {
             product_id: route.params.id,
             customer_id: userId,
@@ -46,9 +51,15 @@ const ProductDetailScreen = ({
     }
 
     return (
-        <Layout loading={loading} >
+        <Layout 
+            title="Product detail"
+            loading={loading} 
+            isCartIcon={true}
+        >
+           
             <View>
                 <View style={styles.promotionContent}>
+                   
                     <MainText title="Free delivery!" style={{ color: "red", fontSize: 24 }} />
                 </View>
                 {product?.product_id &&

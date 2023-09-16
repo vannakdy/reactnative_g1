@@ -9,6 +9,7 @@ import ModalContain from "../component/modal/ModalContain"
 import InputText from "../component/input/InputText"
 import MainText from "../component/text/MainText"
 import AntDesign from "react-native-vector-icons/AntDesign"
+import Layout from "../component/layout/Layout"
 
 const MenuScreen = ({ navigation }) => {
   const [list, setList] = useState([])
@@ -105,8 +106,9 @@ const MenuScreen = ({ navigation }) => {
   }
 
   return (
-    <ScrollView
-      contentContainerStyle={{flexGrow:1}}
+    <Layout
+      title="Menu"
+      isBack={false}
     >
       <View style={{ padding: 15,flex:1 }}>
         <Loading loading={loading} />
@@ -126,7 +128,7 @@ const MenuScreen = ({ navigation }) => {
           )
         })}
       </View>
-    </ScrollView>
+    </Layout>
   )
 }
 
